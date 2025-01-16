@@ -8,7 +8,6 @@ import background from "./background.jpg"
 import {FaDigitalOcean, FaCloudflare, 
   FaNpm, FaGithub, FaFigma, FaFly} from "react-icons/fa6";
 
-  import SytlizedLogoMark from "./Background.jpg"
 import React from "react";
 import StylizedLogoMark from "./StylizedLogoMark";
 import clsx from "clsx";
