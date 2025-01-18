@@ -1,7 +1,56 @@
+"use client";
+
+import gsap from 'gsap';
+import { useGSAP } from "@gsap/react";
+import usePrefersReducedMotion from"@/hooks/usePrefersReducedMotion";
+import { useRef } from "react";
+
 // src/components/StarGrid.tsx
 
 export default function StarGrid() {
+  const container = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
+    gsap.registerPlugin(useGSAP);
+
+
+
     const grid = [14, 30] as const;
+
+
+    useGSAP(()=>{
+      gsap.set(".star-grid-item", {
+        opacity: 0,
+        transformOrigin: "center",
+        color: "#fff",
+
+      })
+      gsap.set(container.current, {opacity:1})
+      const tl= gsap.timeline()
+
+
+      // Entrance animation
+      tl.to(".star-grid-item", {
+        keyframes: [
+          {
+            opacity:0, 
+            duration: 0
+          },
+          {
+            opacity: 0.4,
+            rotate: "+=180",
+            color: "#ffd057",
+            scale: 3,
+            duration: 0.6,
+            
+          }
+        ]
+      })
+
+
+
+      // Loop animation
+
+    }, {scope:container})
   
     return (
        <svg
@@ -11,6 +60,7 @@ export default function StarGrid() {
         className="absolute -top-14 -z-10"
         id="star-grid"
         opacity={0}
+        ref={container}
         style={{
           maskImage: "linear-gradient(black, transparent)",
         }}
