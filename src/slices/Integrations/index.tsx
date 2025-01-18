@@ -11,6 +11,7 @@ import {FaDigitalOcean, FaCloudflare,
 import React from "react";
 import StylizedLogoMark from "./StylizedLogoMark";
 import clsx from "clsx";
+import AnimatedContent from "./AnimatedContent";
 /**
  * Props for `Integrations`.
  */
@@ -53,33 +54,7 @@ md:text-7xl">
 <PrismicRichText field={slice.primary.body} />
 </div>
 
-    <div className="mt-20 flex flex-col items-center md:flex-row">
-    {slice.primary.zone.map((item, index) =>(
-      <React.Fragment key={index}>
-        {index === Math.floor(slice.primary.zone.length / 2) && (
-          <>
-          <StylizedLogoMark />
-          <div className="signal-line rotate-180 bg-gradient-to-t" />
-          </>
-        )}
-        <div className="pulsing-icon flex aspect-square shrink-0 items-center 
-        justify-center rounded-full border border-red-50/30 bg-red-50/25 p-3 
-        text-3xl text-red-100 opacity-40 md:text-4xl lg:text-5xl">
-       {item.icon && icons[item.icon]}
-
-        </div>
-        {index !== slice.items.length -1 &&(
-
-          <div className={clsx("signal-line", index >= Math.floor(slice.items.length / 2) ? "rotate-180": "rotate-0")} />
-        )}
-      </React.Fragment>
-
-    ))}
-
-    </div>
-
-
-
+<AnimatedContent slice={slice}/>
       </div>
       
     </Bounded>

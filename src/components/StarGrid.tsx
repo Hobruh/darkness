@@ -18,6 +18,16 @@ export default function StarGrid() {
 
 
     useGSAP(()=>{
+      if(prefersReducedMotion){
+        gsap.set(container.current, {opacity:1});
+        gsap.set(".star-grid-item", {
+          opacity: .2,
+          scale:1,
+          color: "#fff",
+        })
+        return;
+      }
+
       gsap.set(".star-grid-item", {
         opacity: 0,
         transformOrigin: "center",
@@ -41,14 +51,61 @@ export default function StarGrid() {
             color: "#ffd057",
             scale: 3,
             duration: 0.6,
-            
+            stagger:{
+              amount: 2,
+              grid: grid,
+              from:"center"
+            },
+          },
+          {
+            opacity: 0.2,
+            rotate: "+=180",
+            color: "#fff",
+            scale: 1,
+            delay: -2,
+            duration: 0.6,
+            stagger:{
+              amount: 2,
+              grid: grid,
+              from:"center"
           }
+        }
         ]
       })
 
-
-
       // Loop animation
+      tl.to(".star-grid-item", {
+        delay: 8,
+        repeat: -1,
+        repeatDelay: 6,
+        keyframes: [
+          {
+            opacity: 0.4,
+            rotate: "+=180",
+            color: "#ffd057",
+            scale: 3,
+            duration: 0.6,
+            stagger:{
+              amount: 2,
+              grid: grid,
+              from:"center"
+            },
+          },
+          {
+            opacity: 0.2,
+            rotate: "+=180",
+            color: "#fff",
+            scale: 1,
+            delay: -2,
+            duration: 0.6,
+            stagger:{
+              amount: 2,
+              grid: grid,
+              from:"center"
+          }
+        }
+        ]
+      })
 
     }, {scope:container})
   
